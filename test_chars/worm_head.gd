@@ -28,10 +28,6 @@ func _process(delta):
 	if Input.is_action_pressed("move_right"):
 		cur_acc += Vector2(1,0)
 	
-
-	#if cur_acc.y == 0:
-	#	cur_vel *= 0.9
-	
 	if cur_vel.length() < 1:
 		cur_vel = Vector2(0,0)
 		
@@ -41,7 +37,6 @@ func _process(delta):
 	
 	cur_vel = Vector2(1, 0).rotated(rotation).normalized() * cur_str_vel
 	
-	#cur_vel = self.move_and_slide(cur_vel)
 	self.move_and_slide(cur_vel)
 	
 	
