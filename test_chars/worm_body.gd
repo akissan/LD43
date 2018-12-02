@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var NEXT = null
 
-var ROTATE_RATE = 0.9 #deg2rad(110)
+#var ROTATE_RATE = 0.9 #deg2rad(110)
 var cur_vel = Vector2(0,0)
 
 var draw_vec = Vector2(0,0.01)
@@ -25,8 +25,6 @@ func _process(delta):
 		correct_pos = Dpos
 		look_at(correct_pos)
 
-		var cur_vel = NEXT.cur_vel
-		
 		var dst_vec = (Dpos - Ipos)
 		if dst_vec.length() > 300:
 			dst_vec = dst_vec.normalized() * 5

@@ -4,16 +4,14 @@
 [ext_resource path="res://test_chars/worm_head.tscn" type="PackedScene" id=2]
 [ext_resource path="res://test_chars/worm_body.tscn" type="PackedScene" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="worm" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="worm_head" parent="." instance=ExtResource( 2 )]
-
-[node name="Camera2D" type="Camera2D" parent="worm_head"]
+[node name="worm_camera" type="Camera2D" parent="."]
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 4, 4 )
+zoom = Vector2( 3, 3 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
@@ -33,33 +31,38 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 
-[node name="worm_body" parent="." instance=ExtResource( 3 )]
+[node name="modules" type="Node2D" parent="."]
+
+[node name="worm_head" parent="modules" instance=ExtResource( 2 )]
+z_index = 2
+
+[node name="worm_body" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -178.308, 35.0484 )
 
-[node name="worm_body2" parent="." instance=ExtResource( 3 )]
+[node name="worm_body2" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -323.993, 4.40257 )
 
-[node name="worm_body3" parent="." instance=ExtResource( 3 )]
+[node name="worm_body3" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -461.642, -49.6334 )
 
-[node name="worm_body4" parent="." instance=ExtResource( 3 )]
+[node name="worm_body4" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -579.5, 9.26503 )
 
-[node name="worm_body5" parent="." instance=ExtResource( 3 )]
+[node name="worm_body5" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -683.263, -67.6941 )
 
-[node name="worm_body6" parent="." instance=ExtResource( 3 )]
+[node name="worm_body6" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -805.988, -65.746 )
 
-[node name="worm_body7" parent="." instance=ExtResource( 3 )]
+[node name="worm_body7" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -885.856, -141.719 )
 
-[node name="worm_body8" parent="." instance=ExtResource( 3 )]
+[node name="worm_body8" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -1045.59, -141.719 )
 
-[node name="worm_body9" parent="." instance=ExtResource( 3 )]
+[node name="worm_body9" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -1195.59, -108.602 )
 
-[node name="worm_body10" parent="." instance=ExtResource( 3 )]
+[node name="worm_body10" parent="modules" instance=ExtResource( 3 )]
 position = Vector2( -1390.39, -81.3301 )
 
