@@ -37,6 +37,8 @@ func _process(delta):
 	
 	cur_vel = Vector2(1, 0).rotated(rotation).normalized() * cur_str_vel
 	
+	get_tree().call_group("guns", "set_acc", cur_vel.length() / DEFAULT_SPEED)
+	
 	self.move_and_slide(cur_vel)
 	
 	

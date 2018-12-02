@@ -10,6 +10,7 @@ signal destroyed
 export(PackedScene) var test_dia_window
 var WIND_OPENED = false
 var WIND = null
+var WIND_TALKED = false
 
 func _process(delta):
 	if cur_health < HP_to_enemy:
@@ -32,7 +33,7 @@ func get_bullet_collision(bullet):
 	get_damage(bullet.dmg)
 
 func _on_mouse_area_mouse_entered():
-	if not WIND_OPENED:
+	if not WIND_OPENED and not WIND_TALKED:
 		WIND = test_dia_window.instance()
 		self.add_child(WIND)
 		WIND_OPENED = true
@@ -49,4 +50,5 @@ func unset_enemy():
 	remove_from_group("targets")
 		
 func set_enemy():
+	WIND_TALKED = true
 	add_to_group("targets")
