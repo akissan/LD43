@@ -35,9 +35,9 @@ func _ready():
 		trgt.connect("destroyed", self, "trgt_destroyed")
 
 func _process(delta):
+	trgts = get_tree().get_nodes_in_group("targets")
 	
-	if Input.is_action_just_pressed("ui_down"):
-		print(closest_target)
+	closest_target = null
 	
 	for trgt in trgts:
 		var trgt_pos = to_local(trgt.global_position)
@@ -48,8 +48,7 @@ func _process(delta):
 	if closest_target == null or to_local(closest_target.global_position).length() > DEFAULT_RADIUS: 
 		look_at(get_global_mouse_position())
 		CT = 'M'	
-		
-		if Input.is_action_just_pressed("ui_right") and CD_cur < 0.00001:
+		if Input.is_action_pressed("ui_right") and CD_cur < 0.00001:
 			CD_cur = CD
 			shot(get_global_mouse_position())
 		

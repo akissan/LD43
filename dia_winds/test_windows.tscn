@@ -1,6 +1,8 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="Control" type="Control"]
+[ext_resource path="res://dia_winds/test_windows.gd" type="Script" id=1]
+
+[node name="main_window" type="Control"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -13,14 +15,15 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+script = ExtResource( 1 )
 
-[node name="HBoxContainer" type="VBoxContainer" parent="."]
+[node name="main_cont" type="VBoxContainer" parent="."]
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 185.0
-margin_bottom = 185.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -839.0
+margin_bottom = -415.0
 rect_min_size = Vector2( 185, 185 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -30,7 +33,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="Panel" type="Panel" parent="HBoxContainer"]
+[node name="dia_panel" type="Panel" parent="main_cont"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -44,7 +47,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Panel"]
+[node name="dia_cont" type="VBoxContainer" parent="main_cont/dia_panel"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -61,7 +64,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 0
 
-[node name="Label" type="Label" parent="HBoxContainer/Panel/VBoxContainer"]
+[node name="dia_name" type="Label" parent="main_cont/dia_panel/dia_cont"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -82,7 +85,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label2" type="Label" parent="HBoxContainer/Panel/VBoxContainer"]
+[node name="dia_text" type="Label" parent="main_cont/dia_panel/dia_cont"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -102,7 +105,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Buttons" type="HBoxContainer" parent="main_cont"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -119,7 +122,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 alignment = 0
 
-[node name="Button" type="Button" parent="HBoxContainer/HBoxContainer"]
+[node name="B1" type="Button" parent="main_cont/Buttons"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -141,7 +144,7 @@ text = "yep"
 flat = false
 align = 1
 
-[node name="Button2" type="Button" parent="HBoxContainer/HBoxContainer"]
+[node name="B2" type="Button" parent="main_cont/Buttons"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -164,3 +167,5 @@ text = "nope"
 flat = false
 align = 1
 
+[connection signal="pressed" from="main_cont/Buttons/B1" to="." method="_on_B1_pressed"]
+[connection signal="pressed" from="main_cont/Buttons/B2" to="." method="_on_B2_pressed"]
