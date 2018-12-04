@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://main_ship.gd" type="Script" id=1]
+[ext_resource path="res://test2_chars/main_ship/draw.gd" type="Script" id=2]
+[ext_resource path="res://test2_chars/textures/SpaceShip.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 24.038
+height = 17.6051
+
+[node name="main_ship" type="KinematicBody2D"]
+scale = Vector2( 0.7, 0.7 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+motion/sync_to_physics = false
+script = ExtResource( 1 )
+SPEED_DEFAULT = 370
+ACC_WEIGHT = 0.625
+
+[node name="draw" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="skin" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 3 )
+
+[node name="modules" type="Node2D" parent="."]
+

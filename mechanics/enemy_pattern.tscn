@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enemy_pattern.gd" type="Script" id=1]
+[ext_resource path="res://test2_chars/textures/Ships.png" type="Texture" id=2]
+[ext_resource path="res://mechanics/Sprite.gd" type="Script" id=3]
+[ext_resource path="res://GUI/fonts/default_font.tres" type="DynamicFont" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 34.3161
+
+[node name="enemy_pattern" type="KinematicBody2D" groups=[
+"enemy",
+"everything",
+]]
+scale = Vector2( 0.5, 0.5 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+motion/sync_to_physics = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -581.656 ]
+}
+SPEED_DEFAULT = 370
+ACC_WEIGHT = 0.625
+behavior = "Intercept"
+HP_MAX = 200
+INTERCEPT_WEIGHT = 0.4
+PURSUIT_WEIGHT = 0.8
+PURSUIT_DIST = 150
+SCOUT_DIST = 200
+MIN_DIST = 60
+MAX_DIST = 400
+ERROR_RAD = 50
+AGRE_RAD = 400
+DAMAGE = 12
+ATTACK_RAD = 420
+CD = 0.8
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="hp_text" type="Label" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 50, 50 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 5
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0.117647, 0, 1 )
+text = "100%
+"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+

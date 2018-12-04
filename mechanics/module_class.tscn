@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://mechanics/module_class.gd" type="Script" id=1]
+
+[node name="module_class" type="Control"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+icon = null
+TYPE = null
+hp_prv = 0
+cap_prv = 0
+add_dmg_prv = 0
+wpn_cd_red_prv = 1.0
+dmg = 0
+dmg_ref = 0
+ref_cnt = 0
+wpn_cd = 0
+wpn_rng = 200
+ref_debuff = null
+
