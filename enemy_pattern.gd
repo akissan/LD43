@@ -4,9 +4,7 @@ var BEH_LIST = ["Intercept", "Pursuit", "Scout"]
 
 export(String, "Intercept", "Pursuit", "Scout") var behavior = "Intercept"
 
-onready var PLAYER = get_parent().get_parent().get_node("main_ship")
-
-
+onready var PLAYER = get_tree().get_root().find_node("main_ship")
 
 export(float, 1, 1000) var HP_MAX = 200
 var hp_cur = HP_MAX
@@ -36,8 +34,6 @@ func attack():
 		PLAYER.get_hit(DAMAGE * (0.9 + 0.2*randf()) ) 
 		PLAYER.get_parent().get_node("draw_gui").state_changed(self) 
 
-
-
 var MOUSE_RAD = 40
 
 var MOUSE_HOVER = false
@@ -57,7 +53,6 @@ func check_mouse_enter():
 			PLAYER.set_target(self)
 	else:
 		MOUSE_HOVER = false
-		
 
 func movenment_enemy(beh, delta, target_pos, target_vel):
 	

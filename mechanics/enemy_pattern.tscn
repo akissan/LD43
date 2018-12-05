@@ -11,8 +11,8 @@ custom_solver_bias = 0.0
 radius = 34.3161
 
 [node name="enemy_pattern" type="KinematicBody2D" groups=[
-"enemy",
 "everything",
+"enemy",
 ]]
 scale = Vector2( 0.5, 0.5 )
 input_pickable = false

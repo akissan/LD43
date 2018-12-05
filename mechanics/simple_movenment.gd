@@ -44,3 +44,15 @@ func movenment_player(delta):
 
 func movenmnet_bot_to(delta, target):
 	self.move_and_slide(get_mas(delta, get_des_vel(self.global_position, target)))
+	
+func get_closest(group_name):
+	var targets = get_tree().get_nodes_in_group(group_name)
+	var dist = 9999999
+	var closest_target = null
+	for target in targets:
+		var d = to_local(target.global_position).length()
+		if closest_target == null or d < dist:
+			closest_target = target
+			dist = d
+	return closest_target
+                                                                                      

@@ -1,7 +1,7 @@
 extends "res://mechanics/simple_movenment.gd"
 
 onready var MOD_GEN = $module_generator
-onready var GUI = get_parent().get_node("ship_gui")
+onready var GUI = get_tree().get_root().find_node("GUI")
 
 var TARGET = null
 var TARGETS = []
@@ -9,8 +9,6 @@ var TARGETS = []
 var time_from_death = 0
 var DEAD = false
 var time_to_restart = 0.3
-
-
 
 
 func _process(delta):
@@ -45,7 +43,7 @@ func get_hit(dmg):
 	time_from_get_hit = 0
 	if cur_hp < 0:
 		DEAD = true
-		get_parent().get_node("main_ship/black_screen/black_screen_animator").play("death")
+		#get_parent().get_node("main_ship/black_screen/black_screen_animator").play("death")
 		
 		
 	#	emit_signal("death")
@@ -164,7 +162,7 @@ func add_res(_res):
 	for i in range(res.size()):
 		get_parent().get_node("ship_gui").q1 += _res[i]
 		res[i] = min(res_max, res[i] + _res[i])
-	get_parent().get_node("ship_gui").show_quests()
+	#get_parent().get_node("ship_gui").show_quests()
 
 func try_to_spend(_res):
 	var can_spend = true

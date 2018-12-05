@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var PLAYER = get_parent().get_node("main_ship")
+onready var PLAYER = get_tree().get_root().find_node("main_ship")
 
 export(PackedScene) var enemy
 
@@ -43,5 +43,3 @@ func _process(delta):
 		spawn_time_cur = rand_range(spawn_time_min, spawn_time_max)
 		enemy_gen()
 		enemy_cur_count = get_tree().get_nodes_in_group("enemy").size()
-		
-

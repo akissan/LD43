@@ -44,9 +44,8 @@ func show_quests():
 	var string_3 = "CRAFT A BIG GUN..." + str(q3) + "/" + str(q3_m) + '\n'
 	TERMINAL.console(string_1 + string_2 + string_3)
 
-
-onready var MAIN_SHIP = get_parent().get_node("main_ship")
-onready var TERMINAL = get_parent().get_node("main_camera/terminal")
+onready var MAIN_SHIP = get_tree().get_root().find_node("main_ship")
+onready var TERMINAL = get_tree().get_root().find_node("TERMINAL")
 
 func refresh():
 	for om in opened_modules:

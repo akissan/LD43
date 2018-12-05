@@ -3,8 +3,8 @@ extends Node2D
 onready var enemies = get_tree().get_nodes_in_group("enemy")
 onready var everything = get_tree().get_nodes_in_group("everything")
 
-onready var PLAYER = get_parent().get_node("main_ship")
-onready var PLAYER_POS = get_parent().get_node("main_ship").global_position
+onready var PLAYER = get_tree().get_root().find_node("main_ship")
+onready var PLAYER_POS = PLAYER.global_position
 
 var groups = ["enemy", "unknown", "neutral", "resource", "everything"]
 
