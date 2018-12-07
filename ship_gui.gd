@@ -2,6 +2,8 @@ extends Control
 
 export(PackedScene) var _button
 
+onready var PLAYER = get_tree().get_root().find_node("main_ship", true, false)
+
 var module_count = 3
 var option_count = 3
 
@@ -42,10 +44,10 @@ func show_quests():
 	var string_1 = "Get some resources... " + str(q1) + "/" + str(q1_m) + '\n' 
 	var string_2 = "Defeat scavengers..." + str(q2) + "/" + str(q2_m) + '\n'
 	var string_3 = "CRAFT A BIG GUN..." + str(q3) + "/" + str(q3_m) + '\n'
-	TERMINAL.console(string_1 + string_2 + string_3)
+	#TERMINAL.console(string_1 + string_2 + string_3)
 
-onready var MAIN_SHIP = get_tree().get_root().find_node("main_ship")
-onready var TERMINAL = get_tree().get_root().find_node("TERMINAL")
+onready var MAIN_SHIP = get_tree().get_root().find_node("main_ship", true, false)
+onready var TERMINAL = get_tree().get_root().find_node("TERMINAL", true, false)
 
 func refresh():
 	for om in opened_modules:
@@ -117,17 +119,18 @@ func check_quests():
 		TERMINAL.console("Wow... \nThx for playing dis game, huhuh.\nUr lucky in dis space:)\nHope ur enjooyed dis litl adventure")
 
 func _process(delta):
-	
+	if PLAYER != null:
+			self.rect_global_position = PLAYER.global_position
+			var res = PLAYER.res
 	check_quests()
-	
+
 	$tooltip.text = find_tooltip()
-	var PLAYER = get_parent().get_node("main_ship")
-	var res = PLAYER.res
-	var res_max = str(PLAYER.res_max)
-	$res.text = str(res[0]) + '/' + res_max +'◰\n' + str(res[1]) + '/' + res_max +'▥\n' + str(res[2]) + '/' + res_max + '◩\n'
+	
+	#var res_max = str(PLAYER.res_max)
+	#$res.text = str(res[0]) + '/' + res_max +'◰\n' + str(res[1]) + '/' + res_max +'▥\n' + str(res[2]) + '/' + res_max + '◩\n'
 	cover_test()
-	
-	
+
+
 	# 1 ◰, 1 ▥ and 1 ◩ to upg
 
 func show_modules():
@@ -212,5 +215,5 @@ func close_modules():
 func _ready():
 	pass
 	
-func move(pos):
-	self.rect_global_position = pos
+#func move(pos):
+#	self.rect_global_position = pos

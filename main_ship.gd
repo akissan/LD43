@@ -1,9 +1,8 @@
-extends "res://mechanics/simple_movenment.gd"
+extends "res://mechanics/GG_behavior.gd"
 
 onready var MOD_GEN = $module_generator
-onready var GUI = get_tree().get_root().find_node("GUI")
+onready var GUI = get_tree().get_root().find_node("GUI", true, false)
 
-var TARGET = null
 var TARGETS = []
 
 var time_from_death = 0
@@ -17,8 +16,8 @@ func _process(delta):
 		time_from_death += delta
 		if time_from_death > time_to_restart:
 			get_tree().reload_current_scene()
-	
-	movenment_player(delta)
+	player_movenment(delta)
+	#movenment_player(delta)
 	time_from_get_hit += delta
 	regen()
 	$skin.modulate = Color(1.0, cur_hp / MAX_HP , cur_hp / MAX_HP)
@@ -33,7 +32,6 @@ func regen():
 		cur_hp = min(cur_hp + regen_value, MAX_HP)
 		
 		
-var MAX_HP = 120
 var cur_hp = MAX_HP
 
 signal death

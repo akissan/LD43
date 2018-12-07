@@ -1,10 +1,10 @@
-extends "res://mechanics/simple_movenment.gd"
+extends "res://mechanics/enemy_behavior.gd"
 
 var BEH_LIST = ["Intercept", "Pursuit", "Scout"]
 
 export(String, "Intercept", "Pursuit", "Scout") var behavior = "Intercept"
 
-onready var PLAYER = get_tree().get_root().find_node("main_ship")
+onready var PLAYER = get_tree().get_root().find_node("main_ship", true, false)
 
 export(float, 1, 1000) var HP_MAX = 200
 var hp_cur = HP_MAX
@@ -38,7 +38,6 @@ var MOUSE_RAD = 40
 
 var MOUSE_HOVER = false
 
-var AGRE = false
 var FORCE_REVEAL = false
 
 onready var time_seed = randf()
@@ -98,10 +97,10 @@ func _process(delta):
 	time += 1
 	target_pos = PLAYER.global_position
 	
-	target_vel = PLAYER.vel_cur
+	target_vel = PLAYER.cur_vel
 	
 	if not AGRE:
-		if to_local(target_pos + vel_cur).length() < AGRE_RAD:
+		if to_local(target_pos + cur_vel).length() < AGRE_RAD:
 			get_parent().get_parent().get_node("draw_gui").state_changed(self) 
 			AGRE = true
 			
