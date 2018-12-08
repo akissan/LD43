@@ -2,6 +2,9 @@ extends KinematicBody2D
 
 
 onready var TARGET = null
+export(String, "enemy", "neutral", "default", "friendly", "unknown", "resource") var BASE_GROUP = "default"
+
+onready var CUR_GROUP = BASE_GROUP
 
 export(float, 1, 2000) var MAX_HP = 200 
 export(int, 50, 600) var SPEED_DEFAULT = 370
@@ -32,6 +35,9 @@ var des_vel = cur_vel
 
 var eps = 0.00001
 
+func _ready():
+	self.add_to_group(BASE_GROUP)
+
 func get_cur_speed(cs = cur_speed, ds = des_speed, sa = speed_acc):
 	var cs_res = Vector2( lerp(cs.x, ds.x, sa.x) ,  lerp(cs.y, ds.y, sa.y))
 	
@@ -53,18 +59,14 @@ func get_rot(rot_dir, rot_speed):
 	return rot_dir * rot_speed
 
 func player_movenment(delta):
-
 	var acc = get_acc_vec()
 	rot_slow_cur = lerp(rot_slow_cur, rot_slow * abs(acc.x), rot_slow_acc)
 	var rot = get_rot( acc.y, rot_speed * (1 - rot_slow_cur)) * delta
 	cur_rotation += rot	
 	turn_slow_cur = lerp(turn_slow_cur, turn_slow * abs(acc.y), turn_slow_acc)
-	
 	des_speed = acc.x * SPEED_DEFAULT
 	cur_speed = lerp(cur_speed, des_speed, speed_acc)  
-	
 	cur_vel = cur_vel.linear_interpolate(cur_speed * (1 - turn_slow_cur) * Vector2(1,0).rotated(cur_rotation), vec_acc)
-
 	self.move_and_slide(cur_vel)
 
 
@@ -92,4 +94,6 @@ func get_dist(target):
 #B = 1 -> 0.8*a if x = 4, B = 3 -> 0.8*a if x = 1.3, B = 10 -> 0.8*a if x = 0.4
 func simple_0_to_A(x, A = 1, B = 1): 
 	return A * (1 - 1 / (B * x + 1))
-	               
+	
+func get_behavior():
+	return BASE_GROUP      

@@ -38,15 +38,7 @@ func check_hover():
 		get_parent().HOVERED = true
 	else:
 		get_parent().HOVERED = false
-#
-#func on_area_entered(is_tooltip): 
-#	get_parent().HOVERED = true
-#	if is_tooltip: get_parent().TOOLTIP = true
-#
-#func on_area_left(is_tooltip):
-#	if is_tooltip: get_parent().TOOLTIP = false
-#	else: get_parent().HOVERED = false
-#
+
 var strings = [ 
 	"Click to get some info about this module", 
 	'Spend 1 ◰, 1 ▥ and 1 ◩ to upgrade this module',

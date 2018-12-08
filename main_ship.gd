@@ -2,6 +2,8 @@ extends "res://mechanics/GG_behavior.gd"
 
 onready var MOD_GEN = $module_generator
 onready var GUI = get_tree().get_root().find_node("GUI", true, false)
+onready var RADAR = get_tree().get_root().find_node("radar", true, false)
+
 
 var TARGETS = []
 
@@ -12,12 +14,14 @@ var time_to_restart = 0.3
 
 func _process(delta):
 	
+	RADAR.radar()
+	
 	if DEAD:
 		time_from_death += delta
 		if time_from_death > time_to_restart:
 			get_tree().reload_current_scene()
 	player_movenment(delta)
-	#movenment_player(delta)
+	
 	time_from_get_hit += delta
 	regen()
 	$skin.modulate = Color(1.0, cur_hp / MAX_HP , cur_hp / MAX_HP)

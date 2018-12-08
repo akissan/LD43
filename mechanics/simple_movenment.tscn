@@ -17,6 +17,10 @@ collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = ExtResource( 1 )
+BASE_GROUP = "default"
+MAX_HP = 200
+SPEED_DEFAULT = 370
+ROTATE_DEFAULT_DEGREE = 400
 
 [node name="shape" type="CollisionShape2D" parent="."]
 position = Vector2( -0.250351, 1.50207 )
