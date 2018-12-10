@@ -14,7 +14,7 @@ var time_to_restart = 0.3
 
 func _process(delta):
 	
-	RADAR.radar()
+	RADAR.get_cur_radar_units()
 	
 	if DEAD:
 		time_from_death += delta

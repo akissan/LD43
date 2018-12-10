@@ -4,12 +4,11 @@ var BEH_LIST = ["Intercept", "Pursuit", "Scout"]
 
 export(String, "Intercept", "Pursuit", "Scout") var behavior = "Intercept"
 
-onready var PLAYER = get_tree().get_root().find_node("main_ship", true, false)
+#onready var PLAYER = get_tree().get_root().find_node("main_ship", true, false)
 
 export(float, 1, 1000) var HP_MAX = 200
 var hp_cur = HP_MAX
 
-var time = 0
 var des_pos = Vector2()
 
 export(float, 0, 3) var INTERCEPT_WEIGHT = 0.4

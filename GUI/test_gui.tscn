@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://GUI/test_gui.gd" type="Script" id=1]
-[ext_resource path="res://GUI/draw_gui.gd" type="Script" id=2]
+[ext_resource path="res://GUI/radar.gd" type="Script" id=2]
 [ext_resource path="res://test2_chars/main_ship.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GUI/module_generator.gd" type="Script" id=4]
 [ext_resource path="res://mechanics/module_class.tscn" type="PackedScene" id=5]
@@ -138,6 +138,9 @@ shader_param/BarrelPower = 1.05
 
 [node name="main_test" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
 
 [node name="bg_canvas_layer" type="CanvasLayer" parent="."]
 layer = -4
@@ -165,7 +168,10 @@ color = Color( 0.105882, 0.12549, 0.14902, 1 )
 
 [node name="radar" type="Node2D" parent="map_layer/GG"]
 script = ExtResource( 2 )
+group_cols = [ Color( 0.85098, 0, 0, 1 ), Color( 0.733333, 0.901961, 0.203922, 1 ), Color( 0.807843, 0.807843, 0.807843, 1 ), Color( 0.45098, 0.898039, 0, 1 ), Color( 0.494118, 0.494118, 0.494118, 1 ), Color( 1, 1, 1, 1 ) ]
 links_count = 7
+target_circle_rad = 48
+self_circle_rad = 40
 
 [node name="main_camera" type="Camera2D" parent="map_layer/GG"]
 anchor_mode = 1
@@ -192,7 +198,10 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 
 [node name="main_ship" parent="map_layer/GG" instance=ExtResource( 3 )]
+editor/display_folded = true
 z_index = 1
+CUR_GROUP = "unknown"
+INIT_GROUP = "everything"
 
 [node name="module_generator" type="Node2D" parent="map_layer/GG/main_ship"]
 scale = Vector2( 1.42857, 1.42857 )
@@ -202,26 +211,43 @@ _module = ExtResource( 5 )
 [node name="quests" type="Node2D" parent="map_layer/GG/main_ship"]
 
 [node name="enemy" type="Node2D" parent="map_layer"]
+editor/display_folded = true
 script = ExtResource( 6 )
 enemy = ExtResource( 7 )
 
 [node name="Node2D" parent="map_layer/enemy" instance=ExtResource( 8 )]
 position = Vector2( 244.15, 114 )
-BASE_GROUP = "enemy"
+BASE_GROUP = "friendly"
+CUR_GROUP = "unknown"
+INIT_GROUP = "everything"
 
 [node name="Node2D2" parent="map_layer/enemy" instance=ExtResource( 8 )]
 position = Vector2( 290.7, -151.05 )
 BASE_GROUP = "enemy"
+CUR_GROUP = "unknown"
+INIT_GROUP = "everything"
+
+[node name="Node2D3" parent="map_layer/enemy" instance=ExtResource( 8 )]
+position = Vector2( 56.6996, -217.05 )
+BASE_GROUP = "enemy"
+CUR_GROUP = "unknown"
+INIT_GROUP = "everything"
+
+[node name="Node2D4" parent="map_layer/enemy" instance=ExtResource( 8 )]
+position = Vector2( 322.7, -5.04973 )
+BASE_GROUP = "enemy"
+CUR_GROUP = "unknown"
+INIT_GROUP = "everything"
 
 [node name="neutral" type="Node2D" parent="map_layer"]
 
 [node name="structures" type="Node2D" parent="map_layer"]
+editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="map_layer/structures"]
 texture = ExtResource( 9 )
 
 [node name="interface" type="Control" parent="."]
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0

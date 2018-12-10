@@ -2,9 +2,23 @@ extends KinematicBody2D
 
 
 onready var TARGET = null
+onready var PLAYER = get_tree().get_root().find_node("main_ship", true, false)
+
 export(String, "enemy", "neutral", "default", "friendly", "unknown", "resource") var BASE_GROUP = "default"
 
-onready var CUR_GROUP = BASE_GROUP
+export(String, "enemy", "neutral", "default", "friendly", "unknown", "resource") var CUR_GROUP = "unknown"
+
+export(String, "everything", "structure", "invisible") var INIT_GROUP = "everything"
+
+func group_reveal():
+	CUR_GROUP = BASE_GROUP
+
+func _process(delta):
+	if Input.is_action_just_pressed("LMB"):
+		if get_local_mouse_position().length() < 40:
+			self.group_reveal()
+			if self.CUR_GROUP == "enemy":
+				PLAYER.TARGET = self
 
 export(float, 1, 2000) var MAX_HP = 200 
 export(int, 50, 600) var SPEED_DEFAULT = 370
@@ -34,8 +48,10 @@ var des_speed = cur_speed
 var des_vel = cur_vel
 
 var eps = 0.00001
+var time = 0.0
 
 func _ready():
+	self.add_to_group(INIT_GROUP)
 	self.add_to_group(BASE_GROUP)
 
 func get_cur_speed(cs = cur_speed, ds = des_speed, sa = speed_acc):
@@ -69,6 +85,20 @@ func player_movenment(delta):
 	cur_vel = cur_vel.linear_interpolate(cur_speed * (1 - turn_slow_cur) * Vector2(1,0).rotated(cur_rotation), vec_acc)
 	self.move_and_slide(cur_vel)
 
+func get_closest_c_from_list(count, list):
+	var res = []
+	if list.size() <= count:
+		res = list
+	else:
+		for i in range(count):
+			var _res = get_closest(list)
+			list.erase(_res)
+			res.append(_res)
+	return res
+
+func get_closest_c_from_group(count, group_name):
+	var list = get_tree().get_nodes_in_group(group_name)
+	return get_closest_c_from_list(count, list)
 
 func get_closest_in_group(group_name):
 	var list = get_tree().get_nodes_in_group(group_name)
@@ -95,5 +125,8 @@ func get_dist(target):
 func simple_0_to_A(x, A = 1, B = 1): 
 	return A * (1 - 1 / (B * x + 1))
 	
-func get_behavior():
+func get_cur_behavior():
+	return CUR_GROUP
+	
+func get_true_behavior():
 	return BASE_GROUP      

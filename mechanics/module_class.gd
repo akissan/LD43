@@ -122,8 +122,8 @@ func get_target():
 
 func shot(owner_pos, target, wpn_cd_red, dmg_buff):
 	cur_cd = wpn_cd * wpn_cd_red
-	target.get_hit(dmg + dmg_buff)
-	SHIP.get_parent().get_node("draw_gui").state_changed(target) 
+	#target.get_hit(dmg + dmg_buff)
+	#SHIP.get_parent().get_node("draw_gui").state_changed(target) 
 	
 func shot_ref(owner, target, targets, wpn_cd_red, dmg_buff):
 	cur_cd = wpn_cd * wpn_cd_red
